@@ -34,30 +34,10 @@ export default new class App {
     middlewares() {
         this.app.use(express.json());
         this.app.use(cors());
-        this.app.use((err, req, res, next)=>this.handleErrors(err, req, res, next));
     }
 
     routes() {
         this.app.use(routes.getRoutes());
-    }
-
-    /**
-     * @param {Error} err 
-     * @param {Request} req 
-     * @param {Response} res 
-     * @param {NextFunction} next 
-     */
-    handleErrors(err, req, res, next) {
-        if(err instanceof Error) {
-            return res.status(400).json({
-                error: err.message
-            })
-        }
-
-        return res.status(500).json({
-            status: 'error',
-            message: 'Internal server error'
-        })
     }
 
     listen() {
