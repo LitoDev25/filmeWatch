@@ -5,6 +5,14 @@ import GenderController from "./controllers/GenderController/index.js";
 import MovieController from "./controllers/MovieController/index.js";
 import SeasonController from "./controllers/SeasonController/index.js";
 
+import path from 'path';
+import pkg from 'path';
+const {resolve} = pkg;
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename)
+
 export default new class RouterApp {
     constructor() {
         this.routes = Router();
@@ -16,9 +24,7 @@ export default new class RouterApp {
      * @param {Response} res 
      */
     home(req, res) {
-        return res.json({
-            server: "Online!",
-        })
+        return res.sendFile(path.join(__dirname, 'static', 'index.html'));
     }
 
     admin() {
