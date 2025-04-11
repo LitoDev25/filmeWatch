@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
 
-
 export default new class App {
     constructor() {
         this.app = express();
@@ -53,3 +52,4 @@ export default new class App {
         this.listen();
     }
 }
+

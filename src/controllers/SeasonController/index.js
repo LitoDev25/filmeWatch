@@ -32,8 +32,12 @@ export default new class SeasonController {
                 episodes,
             })
 
+            const movie = await Movie.findOne({ _id: movieId });
+
+            movie.seasons.push(response._id)
+
             await Movie.findByIdAndUpdate(movieId, {
-                seasons: response._id,
+                seasons: movie.seasons,
             })
 
             return res.json(response);
